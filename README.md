@@ -15,6 +15,8 @@ This project exists to let users of the existing [Stellantis Vehicles HACS integ
 
 The default configuration does not publish a host port. Your email and password are submitted to your local worker, which contacts Stellantis. We do not operate a shared login server. Vehicle data and token renewal still require Stellantis services.
 
+[Website auf Deutsch](https://firasenax.github.io/stellantis-login-worker/de.html) · [Website in English](https://firasenax.github.io/stellantis-login-worker/)
+
 See [add-on documentation](stellantis_login_worker/DOCS.md) for troubleshooting and [dependency maintenance](docs/DEPENDENCIES.md) for updates.
 
 ## Development

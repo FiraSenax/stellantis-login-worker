@@ -1,25 +1,56 @@
 name: Build test images
 on:
   push:
+    paths:
+      - stellantis_login_worker/**
+      - .github/workflows/build.yml
   pull_request:
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.runner }}
     strategy:
       fail-fast: false
       matrix:
-        arch: [amd64, aarch64]
+        include:
+          - arch: amd64
+            runner: ubuntu-latest
+          - arch: aarch64
+            runner: ubuntu-24.04-arm
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: home-assistant/builder@250ea2192b6df8ba411f158b5b6c13e09e657eff
+      - name: Read add-on version
+        id: version
+        run: echo "value=$(sed -n 's/^version: //p' stellantis_login_worker/config.yaml)" >> "$GITHUB_OUTPUT"
+      - uses: home-assistant/builder/actions/build-image@250ea2192b6df8ba411f158b5b6c13e09e657eff
         with:
-          args: |
-            --test
-            --${{ matrix.arch }}
-            --target stellantis_login_worker
-            --image stellantis-login-worker-${{ matrix.arch }}
-            --docker-hub ghcr.io/firasenax
-            --addon
+          arch: ${{ matrix.arch }}
+          context: stellantis_login_worker
+          container-registry-password: ${{ secrets.GITHUB_TOKEN }}
+          image: ghcr.io/firasenax/stellantis-login-worker-${{ matrix.arch }}
+          image-tags: test
+          version: ${{ steps.version.outputs.value }}
+          build-args: BUILD_FROM=ghcr.io/home-assistant/${{ matrix.arch }}-base-debian:bookworm
+          labels: |
+            io.hass.type=addon
+            org.opencontainers.image.licenses=MIT
+          push: 'false'
+          load: 'true'
+          cosign: 'false'
+      - name: Launch bundled Chromium without provider access
+        run: |
+          docker run --rm --entrypoint python3 \
+            ghcr.io/firasenax/stellantis-login-worker-${{ matrix.arch }}:test -c '
+          import asyncio
+          from playwright.async_api import async_playwright
+          async def check():
+              async with async_playwright() as p:
+                  browser = await p.chromium.launch(channel="chromium", headless=True, args=["--no-sandbox"])
+                  page = await browser.new_page()
+                  await page.set_content("<title>Local worker smoke test</title>")
+                  assert await page.title() == "Local worker smoke test"
+                  print("Chromium launch OK:", browser.version)
+                  await browser.close()
+          asyncio.run(check())'
