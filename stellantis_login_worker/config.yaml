@@ -1,0 +1,25 @@
+name: Stellantis Login Worker
+version: 0.3.0-rc.1
+slug: stellantis_login_worker
+description: Local OAuth login service for the homeassistant-stellantis-vehicles integration
+url: https://github.com/FiraSenax/stellantis-login-worker
+arch:
+  - aarch64
+  - amd64
+init: false
+startup: application
+boot: manual
+discovery:
+  - stellantis_vehicles
+# Home Assistant reaches the worker over the internal Supervisor network, so
+# the port stays unpublished unless someone needs it from outside.
+ports:
+  3000/tcp: null
+ports_description:
+  3000/tcp: Only needed if something outside Home Assistant calls the worker
+options:
+  log_level: info
+  timeout: 60
+schema:
+  log_level: list(debug|info|warning|error)
+  timeout: int(30,240)

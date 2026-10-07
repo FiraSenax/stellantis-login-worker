@@ -1,0 +1,7 @@
+Derived from Stellantis Login Worker in ktaubmann/StellantisHAAddon.
+Copyright (c) 2026 Kilian Taubmann. MIT License.
+Source baseline: 96ec49d8ed09f56db0eb20faeca8316b8206b5dd
+Login fixes: a86cf45f61783a15f1ac698c389ca0fdab59b18c
+Dependency maintenance: 2656635 (FiraSenax/StellantisHAAddon).
+Maintained distribution and subsequent changes: FiraSenax.
+No code from the unlicensed homeassistant-stellantis-vehicles-worker-v2 repository is included.

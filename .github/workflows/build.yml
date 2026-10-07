@@ -1,0 +1,25 @@
+name: Build test images
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [amd64, aarch64]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: home-assistant/builder@250ea2192b6df8ba411f158b5b6c13e09e657eff
+        with:
+          args: |
+            --test
+            --${{ matrix.arch }}
+            --target stellantis_login_worker
+            --image stellantis-login-worker-${{ matrix.arch }}
+            --docker-hub ghcr.io/firasenax
+            --addon
