@@ -6,4 +6,5 @@
 - Shared login deadline, immediate busy responses and safe HTTP error messages.
 - Provider-error detection and cleanup of pending login work.
 - Locked runtime dependencies, automated checks and test image builds.
-- Source-built preview; public prebuilt images and release validation pending.
+- Source-built preview; public prebuilt images and live release validation pending.
+- Native amd64/aarch64 image builds and bundled Chromium startup verified.

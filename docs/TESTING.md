@@ -6,7 +6,8 @@
 - That deployment combined a stable-version integration backport, separate refresh-lock work and an earlier worker build. It is not an end-to-end validation of this standalone repository's exact dependency set.
 - Automated unit tests use synthetic data and fake responses. They cover deadlines, cancellation, concurrent requests, malformed inputs, missing codes, provider errors and log redaction.
 - Dependency checks install the hash-pinned requirements, run pip check, audit known Python advisories and exercise the HTTP smoke suite.
-- Image CI targets amd64 and aarch64. Consult the repository's Actions tab for the current commit's actual result; a workflow being present does not mean it has passed.
+- Native amd64 and aarch64 image builds and bundled Chromium startup passed for runtime/build commit `a90ee31`: [image run](https://github.com/FiraSenax/stellantis-login-worker/actions/runs/37585217970). The browser smoke test uses an in-memory page and does not access the provider.
+- Python 3.11 and 3.14 unit jobs and the dependency audit are also green for that commit. Consult Actions for subsequent changes; these results are not a guarantee about a different commit.
 
 ## Required before a stable release
 

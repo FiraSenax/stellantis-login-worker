@@ -1,8 +1,8 @@
 # Local Stellantis Login
 
-This project exists to let users of the existing [Stellantis Vehicles HACS integration](https://github.com/andreadegiovine/homeassistant-stellantis-vehicles). use that integration without its shared, externally hosted login helper. The vehicle integration is the main project: it supplies the entities, vehicle data and commands. This add-on only runs the browser-login step on your own Home Assistant machine.
+This project lets users of the [Stellantis Vehicles HACS integration](https://github.com/andreadegiovine/homeassistant-stellantis-vehicles) run the login helper on their own hardware instead of using the shared, externally hosted service. The vehicle integration is the main project: it supplies the entities, vehicle data and commands. This add-on only runs the browser-login step on your own Home Assistant machine.
 
-**Release candidate, not a stable release.** This standalone packaging combines tested login-recovery changes and newly locked dependencies. That exact combination still needs complete image builds and a live login test. The earlier local deployment authenticated successfully, but that does not validate every new dependency or long-term token renewal.
+**Release candidate, not a stable release.** This standalone packaging combines tested login-recovery changes and newly locked dependencies. Native amd64 and aarch64 builds, including bundled Chromium startup, have passed. This exact combination still needs a live login test. The earlier local deployment authenticated successfully, but that does not validate every new dependency or long-term token renewal.
 
 ## Home Assistant OS installation
 
@@ -17,7 +17,7 @@ The default configuration does not publish a host port. Your email and password 
 
 [Website auf Deutsch](https://firasenax.github.io/stellantis-login-worker/de.html) · [Website in English](https://firasenax.github.io/stellantis-login-worker/)
 
-See [add-on documentation](stellantis_login_worker/DOCS.md) for troubleshooting and [dependency maintenance](docs/DEPENDENCIES.md) for updates.
+See [add-on documentation](stellantis_login_worker/DOCS.md) for troubleshooting and [dependency maintenance](docs/DEPENDENCIES.md) for updates. [Architecture](docs/ARCHITECTURE.md), [validation](docs/TESTING.md), [release process](docs/RELEASING.md) and [contribution guidance](CONTRIBUTING.md) describe the maintenance workflow.
 
 ## Development
 
