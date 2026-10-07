@@ -23,7 +23,8 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Read add-on version
         id: version
-        run: echo "value=$(sed -n 's/^version: //p' stellantis_login_worker/config.yaml)" >> "$GITHUB_OUTPUT"
+        run: |
+          echo "value=$(sed -n 's/^version: //p' stellantis_login_worker/config.yaml)" >> "$GITHUB_OUTPUT"
       - uses: home-assistant/builder/actions/build-image@250ea2192b6df8ba411f158b5b6c13e09e657eff
         with:
           arch: ${{ matrix.arch }}
