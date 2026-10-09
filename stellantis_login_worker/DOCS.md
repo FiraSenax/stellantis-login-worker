@@ -27,7 +27,7 @@ The log records the last login phase and, where available, a numeric provider er
 
 ## Preview limitations
 
-The release candidate builds locally from source. Public prebuilt images and the standalone package's end-to-end login are not yet release-validated. Existing installations of other forks are not migrated automatically; their hostnames and settings differ. Keep a working installation until you explicitly test and switch to this one.
+The release candidate builds locally from source. Version 0.3.0-rc.2 completed one real MyPeugeot login on amd64 with Home Assistant 2026.9.4. A real aarch64 login, restart recovery and natural token renewal remain unverified; public prebuilt images are not yet provided. Existing installations of other forks are not migrated automatically; their hostnames and settings differ. Keep a working installation until you explicitly test and switch to this one.
 
 ## Concurrent logins and diagnostics
 

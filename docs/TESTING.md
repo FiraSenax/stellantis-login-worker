@@ -1,6 +1,31 @@
 # Validation and release status
 
-## What has been verified
+## Live candidate test on 2026-10-09
+
+The standalone worker **0.3.0-rc.2**, runtime/build commit `44a0f73`, was built
+from source by Supervisor and installed alongside the previous worker on an
+**amd64 / generic-x86-64** Home Assistant OS 18.3 host (Supervisor 2026.09.3,
+Home Assistant Core 2026.9.4). The integration was the existing locally patched
+2026.9.4 deployment, not the exact upstream develop-branch PR.
+
+- The add-on started and its internal `/health` endpoint returned `{"status":"ok"}`.
+- A user-driven MyPeugeot reauthentication reached this candidate. The worker
+  reported authorization-code capture about twelve seconds after login started
+  and returned HTTP 200. No code, credentials or account identifiers are recorded here.
+- The integration persisted the new local helper URL, and a freshly loaded
+  integration page showed the configured account without a setup/reauth error.
+- An initial attempt still targeted the stopped previous worker and failed at
+  DNS resolution. The candidate received no login for that attempt. Re-entering
+  the new URL through normal keyboard input preceded the successful attempt;
+  the evidence does not establish a backend URL-selection defect.
+
+This validates one MyPeugeot login using the **locally source-built amd64
+standalone candidate**. It does not validate a real aarch64 login, the exact
+upstream add-on images, every provider, restart recovery or natural token renewal.
+Native CI image builds and bundled Chromium startup for this runtime/build commit
+passed on both architectures: [image run](https://github.com/FiraSenax/stellantis-login-worker/actions/runs/37912905710).
+
+## Earlier validation
 
 - The earlier local HA 2026.9.4 deployment authenticated MyPeugeot through a local helper in approximately ten seconds; the integration then reported `loaded` with no entry error.
 - That deployment combined a stable-version integration backport, separate refresh-lock work and an earlier worker build. It is not an end-to-end validation of this standalone repository's exact dependency set.

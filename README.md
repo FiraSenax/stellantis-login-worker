@@ -2,7 +2,7 @@
 
 This project lets users of the [Stellantis Vehicles HACS integration](https://github.com/andreadegiovine/homeassistant-stellantis-vehicles) run the login helper on their own hardware instead of using the shared, externally hosted service. The vehicle integration is the main project: it supplies the entities, vehicle data and commands. This add-on only runs the browser-login step on your own Home Assistant machine.
 
-**Release candidate, not a stable release.** This standalone packaging combines tested login-recovery changes and newly locked dependencies. Native amd64 and aarch64 builds, including bundled Chromium startup, have passed. This exact combination still needs a live login test. The earlier local deployment authenticated successfully, but that does not validate every new dependency or long-term token renewal.
+**Release candidate, not a stable release.** This standalone packaging combines tested login-recovery changes and newly locked dependencies. Native amd64 and aarch64 builds, including bundled Chromium startup, have passed. The source-built 0.3.0-rc.2 candidate completed a real MyPeugeot login on amd64 with Home Assistant 2026.9.4; see [test scope](docs/TESTING.md). A real aarch64 login, restart recovery and long-term token renewal remain unverified.
 
 ## Home Assistant OS installation
 
