@@ -13,7 +13,7 @@
 
 1. Unit, dependency and image jobs pass for the exact release commit.
 2. Install the add-on on a test HA OS host. Confirm its startup URL and internal health endpoint.
-3. Complete a real login manually. Confirm both code acquisition and integration setup, without sharing credentials or authorization URLs in reports.
+3. Complete a real login manually with the exact candidate image on both amd64 and aarch64. Confirm both code acquisition and integration setup, without sharing credentials or authorization URLs in reports.
 4. Verify an unavailable helper and a rejected login produce a bounded failure. Confirm no credentials are automatically retried against a public service.
 5. Check restart and reauthentication behavior in the integration. Observe natural token refresh; do not force repeated provider logins just to increase a test count.
 6. If publishing prebuilt images, verify anonymous pulls for both architectures before adding an `image:` entry to config.yaml.
