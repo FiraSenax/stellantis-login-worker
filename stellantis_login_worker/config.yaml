@@ -1,5 +1,5 @@
 name: Stellantis Login Worker
-version: 0.3.0-rc.1
+version: 0.3.0-rc.2
 slug: stellantis_login_worker
 description: Local OAuth login service for the homeassistant-stellantis-vehicles integration
 url: https://github.com/FiraSenax/stellantis-login-worker
