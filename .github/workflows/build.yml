@@ -55,7 +55,7 @@ jobs:
               print("labels<<LABELS", *(f"{k}={v}" for k, v in labels.items()),
                     "LABELS", sep="\n", file=output)
           PYTHON
-      - uses: home-assistant/builder/actions/build-image@250ea2192b6df8ba411f158b5b6c13e09e657eff
+      - uses: home-assistant/builder/actions/build-image@9b2658ea6ddfd83d528e5d8e37393893bf5e92d7
         with:
           arch: ${{ matrix.arch }}
           context: stellantis_login_worker
